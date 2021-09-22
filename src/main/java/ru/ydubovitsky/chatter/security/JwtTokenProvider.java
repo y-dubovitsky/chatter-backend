@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public class JwtTokenProvider { // Этот класс отвечает за создание Токена
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenProvider.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenProvider.class);
 
     public String generateWebToken(Authentication authentication) { //FIXME Что такое Authentication? Как я помню, это данные о аутентифицированном пользователе
         User user = (User) authentication.getPrincipal();

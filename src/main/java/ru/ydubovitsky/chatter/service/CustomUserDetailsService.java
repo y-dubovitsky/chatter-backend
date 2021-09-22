@@ -29,6 +29,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         return build(user);
     }
 
+    public User loadUserById(Long id) {
+        User user = userRepository.findUserById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+
+        return user;
+    }
+
     private static User build(User user) { //TODO Можно ли заменить User на UserDetails?
         // "Конвертирует" роли пользователи из ENUM в роли из Spring Security
         List<GrantedAuthority> authorities = user.getRoles().stream()

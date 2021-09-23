@@ -34,7 +34,8 @@ public class JwtTokenProvider { // Этот класс отвечает за с�
                 .addClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(dateExpiration)
-                .signWith(SignatureAlgorithm.ES512, SecurityConstants.SECRET)
+                // https://stackoverflow.com/questions/50201237/base64-encoded-key-bytes-may-only-be-specified-for-hmac-signatures
+                .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
                 .compact();
     }
 

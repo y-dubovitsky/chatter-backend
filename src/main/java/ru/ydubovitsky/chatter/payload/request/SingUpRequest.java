@@ -17,6 +17,9 @@ public class SingUpRequest { //Объект, который мы передае�
     private String email;
 
     @NotEmpty
+    private String name;
+
+    @NotEmpty
     private String firstname;
 
     @NotEmpty

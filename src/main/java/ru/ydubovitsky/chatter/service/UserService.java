@@ -23,7 +23,9 @@ public class UserService {
 
     public User createUser(SingUpRequest userFromReq) throws Exception { // Поступает dto (SingUpRequest)
         User user = new User();
+        user.setName(userFromReq.getName());
         user.setEmail(userFromReq.getEmail());
+        user.setFirstname(userFromReq.getFirstname());
         user.setLastname(userFromReq.getLastname());
         user.setUsername(userFromReq.getUsername());
         user.setPassword(passwordEncoder.encode(userFromReq.getPassword()));

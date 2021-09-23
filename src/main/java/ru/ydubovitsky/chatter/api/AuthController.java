@@ -1,6 +1,5 @@
-package ru.ydubovitsky.chatter.web;
+package ru.ydubovitsky.chatter.api;
 
-import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;

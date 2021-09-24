@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("api/user")
 @CrossOrigin //TODO Позволяет обращаться с локальной машины к серверу
 public class UserController {
 

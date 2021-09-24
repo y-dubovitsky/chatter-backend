@@ -43,7 +43,6 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = SecurityConstants.TOKEN_PREFIX + jwtTokenProvider.generateWebToken(authentication);
-        System.out.println("Hello");
         return ResponseEntity.ok(new JwtTokenSuccessResponse(true, jwt));
     }
 

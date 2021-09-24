@@ -2,6 +2,7 @@ package ru.ydubovitsky.chatter.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -20,15 +21,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthFilter.class);
 
+    @Autowired
     private JwtTokenProvider jwtTokenProvider;
+    @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
     public JwtAuthFilter() {
-    }
-
-    public JwtAuthFilter(JwtTokenProvider jwtTokenProvider, CustomUserDetailsService customUserDetailsService) {
-        this.jwtTokenProvider = jwtTokenProvider;
-        this.customUserDetailsService = customUserDetailsService;
     }
 
     @Override
@@ -52,7 +50,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error("Filter Error " + e.getMessage());
         }
 
         filterChain.doFilter(httpServletRequest, httpServletResponse);

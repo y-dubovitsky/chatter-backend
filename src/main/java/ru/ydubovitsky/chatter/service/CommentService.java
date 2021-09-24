@@ -15,6 +15,7 @@ import ru.ydubovitsky.chatter.repository.UserRepository;
 import java.io.File;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentService {
@@ -55,9 +56,14 @@ public class CommentService {
         return comments;
     }
 
-    public void deleteComment(Long commentId) {
+    public void deleteComment(Long commentId, Principal principal) {
+        User user = getUserFromPrincipal(principal);
         commentRepository.findById(commentId)
-                .ifPresent(comment -> commentRepository.delete(comment));
+                .ifPresent(comment -> {
+                    if(comment.getUsername().equals(user.getName())) {
+                        commentRepository.delete(comment);
+                    }
+                });
     }
 
     private User getUserFromPrincipal(Principal principal) {
